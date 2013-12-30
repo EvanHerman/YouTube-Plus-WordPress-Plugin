@@ -1,0 +1,5 @@
+[28-Dec-2013 12:26:05 America/Denver] PHP Fatal error:  Call to undefined function get_option() in /home6/evanherm/public_html/wp-content/plugins/WP2YT-Uploader/includes/youtube_analytics/youtube_analytics.php on line 106
+[28-Dec-2013 12:26:58 America/Denver] PHP Fatal error:  Call to undefined function get_option() in /home6/evanherm/public_html/wp-content/plugins/WP2YT-Uploader/includes/youtube_analytics/youtube_analytics.php on line 106
+[28-Dec-2013 12:27:32 America/Denver] PHP Fatal error:  Call to undefined function get_option() in /home6/evanherm/public_html/wp-content/plugins/WP2YT-Uploader/includes/youtube_analytics/youtube_analytics.php on line 106
+[28-Dec-2013 12:28:45 America/Denver] PHP Fatal error:  Call to undefined function get_option() in /home6/evanherm/public_html/wp-content/plugins/WP2YT-Uploader/includes/youtube_analytics/youtube_analytics.php on line 106
+[28-Dec-2013 12:29:53 America/Denver] PHP Fatal error:  Call to undefined function get_option() in /home6/evanherm/public_html/wp-content/plugins/WP2YT-Uploader/includes/youtube_analytics/youtube_analytics.php on line 106
