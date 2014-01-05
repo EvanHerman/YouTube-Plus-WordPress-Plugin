@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: WP2YT Uploader
-Plugin URI: www.Evan-Herman.com/wp-plugins/WP2YT-UploaderPlugin
+Plugin URI: www.Evan-Herman.com/wp-plugins/wp2yt-uploaderPlugin
 Description: Upload videos right to your YouTube account, and insert them in to posts without having to leave your blog!
 Author: <a href="http://www.evan-herman.com">Evan Herman</a>
-Version: 1.0
+Version: 1.1
 
 	Copyright 2013  Evan Herman (email : Evan.M.Herman@gmail.com)
     This program is free software; you can redistribute it and/or modify
@@ -96,7 +96,7 @@ function wp2yt_add_menu_page(){
 							  'manage_options', 
 							  'wp2yt_uploader', 
 							  'wp2yt_menu_validate',
-							  plugins_url( '/WP2YT-Uploader/includes/images/youtube-color-icon.png' )
+							  plugins_url( '/wp2yt-uploader/includes/images/youtube-color-icon.png' )
 							); 						  
 }
 add_action('admin_menu', 'wp2yt_add_menu_page');
@@ -121,7 +121,7 @@ function wp2yt_menu_validate() {
 
 <!-- pre loader gif as plugin styles/js files initialize -->
 <div class="wp2yt-page-load-image" style="opacity:0;">
-	<img src="<?php echo esc_attr(plugins_url( '/WP2YT-Uploader/includes/images/loading.gif' ));?>" alt="page-load-gif" />
+	<img src="<?php echo esc_attr(plugins_url( '/wp2yt-uploader/includes/images/loading.gif' ));?>" alt="page-load-gif" />
 </div>
 
 <div id="wp2yt-tabs" style="opacity:0;height:738px;min-height:650px;">
@@ -241,7 +241,7 @@ function wp2yt_menu_validate() {
 					
 					
 					setTimeout(function() {
-						jQuery('#ytu_recent_upload_content').append('<img class="loading_playlist_gif" style="opacity:0; border:none !important; box-shadow:none; height:75px; display:table; margin:0 auto; margin-top:12.5em;" src="<?php echo plugins_url( '/WP2YT-Uploader/includes/images/loading_playlists_gif.gif' );?>"/>');			
+						jQuery('#ytu_recent_upload_content').append('<img class="loading_playlist_gif" style="opacity:0; border:none !important; box-shadow:none; height:75px; display:table; margin:0 auto; margin-top:12.5em;" src="<?php echo plugins_url( '/wp2yt-uploader/includes/images/loading_playlists_gif.gif' );?>"/>');			
 						jQuery('#ytu_recent_upload_content').append('<i class="retreiving_text" style="display:table; margin:0 auto; opacity:0;" class="wp2yt-red">Retreiving your playlist data...</i>');			
 					
 						jQuery('.retreiving_text').fadeTo('fast',1);
@@ -254,7 +254,7 @@ function wp2yt_menu_validate() {
 
 						setTimeout(function() {
 							/* add account variable to end of load to pass variable along to refresh file that is loaded in */
-							 jQuery('#ytu_recent_upload_content').load('<?php echo esc_attr(plugins_url( '/WP2YT-Uploader/includes/refresh_main_playlist.php' ));?>?account=<?php echo $account; ?>' , function( response, status, xhr ) {
+							 jQuery('#ytu_recent_upload_content').load('<?php echo esc_attr(plugins_url( '/wp2yt-uploader/includes/refresh_main_playlist.php' ));?>?account=<?php echo $account; ?>' , function( response, status, xhr ) {
 							  if ( status == "error" ) {
 
 								// jQuery('#ytu_recent_upload_content').css({'height':'227px','min-height':'227px'});
@@ -263,7 +263,7 @@ function wp2yt_menu_validate() {
 									height:'227px'
 								});
 								
-								var msg = "<p class='500-internal-error' style='margin-top:4em; display:none;'><img style='height:2%;border:none;margin-bottom:0;margin-top:-1em;box-shadow:none;' alt='' id='red-x' src='<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' ));?>' /><br />Sorry but there was an <span class='wp2yt-red'>error</span>. This usually occurs when the account name doesn't exist, <br /> was typed incorrectly or the YouTube channel isn't set up correctly. <br /> If you are still having issues check the <a href='http://www.evan-herman.com/wp2yt-documentation/' target='_blank' >documentation</a>.</p>";
+								var msg = "<p class='500-internal-error' style='margin-top:4em; display:none;'><img style='height:2%;border:none;margin-bottom:0;margin-top:-1em;box-shadow:none;' alt='' id='red-x' src='<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' ));?>' /><br />Sorry but there was an <span class='wp2yt-red'>error</span>. This usually occurs when the account name doesn't exist, <br /> was typed incorrectly or the YouTube channel isn't set up correctly. <br /> If you are still having issues check the <a href='http://www.evan-herman.com/wp2yt-documentation/' target='_blank' >documentation</a>.</p>";
 								setTimeout(function() {
 									jQuery('#ytu_recent_upload_content').css({'text-align':'center'}).html(msg);
 									jQuery('.500-internal-error').fadeIn();
@@ -306,8 +306,8 @@ function wp2yt_menu_validate() {
 			// if not valid or not set, redirect to get access token => create cookie => store access key in cookie => delete video with new access token
 			
 			// get UniqueID of selected video
-			var thisUniqueID = jQuery(this).parents('#videos').find('input[name="uniqueVideoID"]').val();
-			var thisDeleteVideo = jQuery(this).parents('#videos');		
+			var thisUniqueID = jQuery(this).parents('.videos').find('input[name="uniqueVideoID"]').val();
+			var thisDeleteVideo = jQuery(this).parents('.videos');		
 				
 			// declare variables
 			<?php $googleAuthKey = get_option('stv_oauth2_text'); ?>
@@ -346,7 +346,7 @@ function wp2yt_menu_validate() {
 	}
 	</script> 
 	
-	<div class="error noAuthCodeError"><img alt="" id="red-x" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' ));?>" /><strong> Error:</strong>You are required to provide an OAUTH2 ID before you can delete a video. Please retreive one <a href="https://code.google.com/apis/console" target="_blank">here</a>.</div>
+	<div class="error noAuthCodeError"><img alt="" id="red-x" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' ));?>" /><strong> Error:</strong>You are required to provide an OAUTH2 ID before you can delete a video. Please retreive one <a href="https://code.google.com/apis/console" target="_blank">here</a>.</div>
  
 	<h2 class="title"><span class="wp2yt-icon-history" style="font-size:35px;"><i>  </i></span>Recent Uploads</h2>	
 	
@@ -358,13 +358,13 @@ function wp2yt_menu_validate() {
 		<script>
 		jQuery(document).ready(function() {
 			if(jQuery.cookie("ytAccessKey")){
-				jQuery(".wp2yt-refresh-playlists").before("<img title='This represents your YouTube access cookie, which allows you to delete videos. This will not be visible once your cookie expires.' class='http-cookie-image' src='<?php echo esc_url(plugins_url( "/WP2YT-Uploader/includes/images/http-cookie-icon.jpg" ));?>' alt='You Have A Cookie!' >")
+				jQuery(".wp2yt-refresh-playlists").before("<img title='This represents your YouTube access cookie, which allows you to delete videos. This will not be visible once your cookie expires.' class='http-cookie-image' src='<?php echo esc_url(plugins_url( "/wp2yt-uploader/includes/images/http-cookie-icon.jpg" ));?>' alt='You Have A Cookie!' >")
 			}
 			
 		});
 		</script>
 		<!-- refresh playlist button -->
-		<button class="btn btn-small btn-inverse wp2yt-refresh-playlists" onclick="wp2yt_get_my_uploads()"><img alt='refresh icon' id="wp2yt-refresh-icon" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/refresh.png' ));?>" />Refresh Playlist</button>
+		<button class="btn btn-small btn-inverse wp2yt-refresh-playlists" onclick="wp2yt_get_my_uploads()"><img alt='refresh icon' id="wp2yt-refresh-icon" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/refresh.png' ));?>" />Refresh Playlist</button>
 
 		<div id="get_playlists_div_holder">
 		<?php require(dirname(__FILE__) . '/includes/get_playlists.php'); ?>
@@ -387,7 +387,7 @@ function wp2yt_menu_validate() {
 
 		<div class="analytics_page" style="display:none;">
 
-			<h3 class="wp2yt-red"><img alt='' id="red-x" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' ));?>" /> Error <img alt='' id="red-x" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' ));?>" /> </h3>
+			<h3 class="wp2yt-red"><img alt='' id="red-x" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' ));?>" /> Error <img alt='' id="red-x" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' ));?>" /> </h3>
 
 				<p id="missing-information"><i>You are missing your <b>OAUTH2 Client ID</b>. You can get one from <a href="https://code.google.com/apis/console" target="_blank">Googles API Console</a>. Please direct yourself to the <i><a href="<?php echo admin_url() . 'options-general.php?page=wp2yt_settings';?>">'WP2YT Uploader Settings'</a></i> page and input your <b>OAUTH2 Client ID</b> if you would like to use the analytics tab.</i></p>
 		</div> <!-- end alaytics page -->
@@ -413,7 +413,7 @@ function wp2yt_menu_validate() {
 					jQuery(document).ready(function() {
 						setTimeout(function() {
 							if(jQuery('.post-auth').css('display') == 'none' && jQuery("#login-container").css('display') == 'none') {
-								jQuery('.analytics_page').append('<img alt="" id="red-x" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' ));?>" /><p style="width:550px; margin-top:0;"><i>Oh no! It looks like there was an error retreiving your analytics data. This usually occurs '+
+								jQuery('.analytics_page').append('<img alt="" id="red-x" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' ));?>" /><p style="width:550px; margin-top:0;"><i>Oh no! It looks like there was an error retreiving your analytics data. This usually occurs '+
 																							'when you have mistyped your OAUTH2 Client ID. Double check you have set up and entered your client id properly.</p>'+
 								
 																							'<p style="width:550px;"><span class="wp2yt-green">tip </span> you can follow the tutorial in the documentation <a href="http://www.evan-herman.com/wp2yt-documentation/" target="blank">here</a>.</p>'+
@@ -572,7 +572,7 @@ function wp2yt_menu_validate() {
 						//start the ajax
 						jQuery.ajax({
 							//this is the php file that processes the data and send mail
-							url: "<?php echo esc_url(plugins_url('/WP2YT-Uploader/includes/process.php')); ?>",    
+							url: "<?php echo esc_url(plugins_url('/wp2yt-uploader/includes/process.php')); ?>",    
 				
 							//GET method is used
 							type: "GET",
@@ -620,13 +620,13 @@ function wp2yt_menu_validate() {
 
 									<b class="wp2yt-green" style="margin-top:1em;">Thank you!</b> I have received your message. I greatly appreciate the feedback. 
 
-										<img alt='' id="success-checkmark" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/success_checkmark.png' ));?>">
+										<img alt='' id="success-checkmark" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/success_checkmark.png' ));?>">
 
 									</div>
 
 										<div class="form">
 
-										<form method="post" action="<?php echo esc_url(plugins_url('/WP2YT-Uploader/includes/process.php')); ?>">
+										<form method="post" action="<?php echo esc_url(plugins_url('/wp2yt-uploader/includes/process.php')); ?>">
 
 										<div class="element">
 
@@ -777,7 +777,7 @@ function wp2yt_menu_validate() {
 
 		<div id="missing-information" style="display:none;">
 			
-			<h3 class="wp2yt-red" style="width:350px; display:inline;"><img alt='' style="margin-right:10px;" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' ));?>">Error<img alt='' style="margin-left:10px;" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' ));?>"> </h3> 
+			<h3 class="wp2yt-red" style="width:350px; display:inline;"><img alt='' style="margin-right:10px;" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' ));?>">Error<img alt='' style="margin-left:10px;" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' ));?>"> </h3> 
 			
 				<p><i>Your missing some vital information that allows you to upload content.
 						Please direct yourself to the <i><a href="<?php echo admin_url() . 'options-general.php?page=wp2yt_settings';?>">'WP2YT Uploader Settings'</a></i> page and double check
@@ -813,7 +813,7 @@ function wp2yt_menu_validate() {
 
 			<div id="loading" style="position:absolute; z-index:999; display:none;box-shadow:none;" ><img alt="" style="margin-left:28em;margin-top:16%;" src="<?php echo esc_url(plugins_url( 'includes/images/loading.gif' , __FILE__ )); ?>"></div>
 
-			<div id="youtube_uploader_image"><img id='wp2yt-uploader-img' alt='wp2yt-youtube-uploader-img' style="margin-top:-4em;margin-left:40em; position:absolute;" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/youtube_upload_image.jpg' ));?>"></div>
+			<div id="youtube_uploader_image"><img id='wp2yt-uploader-img' alt='wp2yt-youtube-uploader-img' style="margin-top:-4em;margin-left:40em; position:absolute;" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/youtube_upload_image.jpg' ));?>"></div>
 
 			<form id="form1" action="" method="post">                
        
@@ -900,7 +900,7 @@ function wp2yt_menu_validate() {
 		</div> <!-- end progress bar -->
 
 			<!-- youtube uploader image -->
-			<div id="youtube_uploader_image"><img alt='' style="margin-top:-4em;margin-left:40em; position:absolute; margin-top:6em;" class="youtube-upload-image" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/youtube_upload_image.jpg' ));?>"></div>
+			<div id="youtube_uploader_image"><img alt='' style="margin-top:-4em;margin-left:40em; position:absolute; margin-top:6em;" class="youtube-upload-image" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/youtube_upload_image.jpg' ));?>"></div>
 
 			<div id="video_info_div">
 			<h2>Review Video Info Below and Attach a File</h2>
@@ -937,7 +937,7 @@ function wp2yt_menu_validate() {
 
 				<div class="upload_error"> 
 
-					<h3 class="wp2yt-red"><img alt='' id="red-x" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' )); ?>"> Error <img alt='' id="red-x" src="<?php  echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/red-x.png' )); ?>"> </h3>
+					<h3 class="wp2yt-red"><img alt='' id="red-x" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' )); ?>"> Error <img alt='' id="red-x" src="<?php  echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/red-x.png' )); ?>"> </h3>
 
 						<p style="width:550px;"><i>Oh no! It looks like there was an error during the upload. This generally occurs
 							when you have mistyped something. Double check all of your settings, and retry the upload.</p>
@@ -976,7 +976,7 @@ function wp2yt_menu_validate() {
 		</div> <!-- end progress bar -->
 		
 		<!-- Video Upload Success Message -->
-		<img alt='' id="success-checkmark" style="position:absolute; margin-left:-12.5em; width:11%; margin-top:-1.5em;" src="<?php echo esc_url(plugins_url( '/WP2YT-Uploader/includes/images/success_checkmark.png' ));?>">
+		<img alt='' id="success-checkmark" style="position:absolute; margin-left:-12.5em; width:11%; margin-top:-1.5em;" src="<?php echo esc_url(plugins_url( '/wp2yt-uploader/includes/images/success_checkmark.png' ));?>">
 
             <b>Video Successfully Uploaded!</b>
             <p>Videos usually take around 10-15 minutes to get accepted and processesed by YouTube (depending on file size). Your video will not show up in recent uploads until it is processed. Please check back soon.</p>
@@ -1020,7 +1020,7 @@ function wp2yt_settings_page() {
 				<h3 style="font-size:1.2rem;">About The Author:</h3>
 				<div class="about-evan-box">
 					<!-- <a class="about-evan-image-link-tag" href="http://www.evan-herman.com" target="_blank"><div class="wp2yt-eherman-profile-pic"><h2 class="wp2yt-profile-pic-text">Evan Herman</h2></div></a> -->
-					<a href="http://www.Evan-Herman.com" target="_blank"><div class="eherman-banner-ad"><img alt="Evan Herman Banner" src="<?php echo esc_url(plugins_url()); ?>/WP2YT-Uploader/includes/images/wp-svg-pro-plugin-banner.png" /></div></a>
+					<a href="http://www.Evan-Herman.com" target="_blank"><div class="eherman-banner-ad"><img alt="Evan Herman Banner" src="<?php echo esc_url(plugins_url()); ?>/wp2yt-uploader/includes/images/wp-svg-pro-plugin-banner.png" /></div></a>
 					<p class="wp2yt-evan-description"> This plugin was created by Evan Herman. A client of mine maintains a site heavily driven by YouTube hosted content. I wanted a way to streamline the process of uploading new content to YouTube from WordPress, so this plugin was born.<br /> <br /><i>'WP2YT Uploader'</i> took a lot of hard work and long hours to create. If you benefit from it, and can spare a few bucks, a donation will help keep this plugin alive. If you can't afford it, <i class="wp2yt-green">I would appreciate 5 star rating.</i></p>
 				<div class="wp2yt-image-links">
 				<h3 class="wp2yt-external-links-header">External Links</h3>
