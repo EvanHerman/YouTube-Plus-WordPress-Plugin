@@ -217,7 +217,7 @@ jQuery(document).ready(function() {
 			}
 		});
 		
-		/* jQuery to insert embed code into posts, and to close media upload thicbox */
+		/* jQuery to insert embed code into posts, and to close media upload thicbox */
 		jQuery('.insert-video-to-post-btn').click(function() {
 			var embedLink = jQuery(this).parents('div#videos').find('#embedLinkDiv').text();
 			embedLink = jQuery.trim(embedLink);

@@ -4,7 +4,7 @@ Plugin Name: YouTube Plus
 Plugin URI: www.Evan-Herman.com/wp-plugins/wp2yt-uploaderPlugin
 Description: Upload videos right to your YouTube account, and insert them in to posts without having to leave your blog!
 Author: <a href="http://www.evan-herman.com">Evan Herman</a>
-Version: 1.2
+Version: 1.3
 
 	Copyright 2013  Evan Herman (email : Evan.M.Herman@gmail.com)
     This program is free software; you can redistribute it and/or modify
@@ -32,7 +32,7 @@ $wp2yt_plugin_name = 'YouTube Plus';
 $wp2yt_options = get_option('wp2yt_settings');
 
 // Declare Plugin Version Number
-$version_num = '1.2';
+$version_num = '1.3';
 
 
 /***********************************
@@ -216,7 +216,7 @@ function wp2yt_menu_validate() {
 		
 	/* store account name variable to pass to refresh file */
 	<?php $account = get_option('yt_account'); ?>	
-
+			
 			// hide deletion error message on page refresh
 			jQuery('.noAuthCodeError').animate({
 				height:"0px",
@@ -982,8 +982,7 @@ function wp2yt_menu_validate() {
             <p>Videos usually take around 10-15 minutes to get accepted and processesed by YouTube (depending on file size). Your video will not show up in recent uploads until it is processed. Please check back soon.</p>
 			<b>URL to Video:</b>
             <p>Here is your url to view your video: <a href="http://www.youtube.com/watch?v=<?php echo esc_html($unique_id); ?>" target="_blank">http://www.youtube.com/watch?v=<?php echo esc_html($unique_id); ?></a></p>
-			<button class="new-upload-insert-video-to-post-btn btn btn-success" value="<?php echo htmlentities('[iframe]<iframe width="640" height="480" src="http://www.youtube.com/embed/') ?><?php echo esc_html($unique_id); ?><?php echo htmlentities('" frameborder="0" allowfullscreen="1"></iframe>[/iframe]') ?>">Insert into Post</button>
-			
+			<button class="new-upload-insert-video-to-post-btn btn btn-success" value="<?php echo htmlentities('[iframe]<iframe width="640" height="480" src="http://www.youtube.com/embed/') ?><?php echo esc_html($unique_id); ?><?php echo htmlentities('" frameborder="0" allowfullscreen="1"></iframe>[/iframe]') ?>">Insert into Post</button>		
 			<button class="btn btn-success btn-small" onclick="refresh_upload_page()">Upload More Content</button>
 			<br />
 						
